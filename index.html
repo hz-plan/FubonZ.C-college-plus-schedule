@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>2027 大學家 College+ 寒假金融實習營｜暖金冒險之章</title>
+
+  <!-- LINE / 社群 Open Graph 預覽卡片標籤 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="2027 大學家 College+ 寒假金融實習營｜Fubon Life Z.C 中辰 冒險之章">
+  <meta property="og:description" content="等級提升 × 財商副本 × 夥伴羈絆 × 實戰冒險！4 天全程免費，裝備你的職場專屬神裝。">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://forms.gle/TiXgMReCXhm22UcB8">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Pixelify Sans + Noto Sans TC for a crisp RPG interface -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Klee+One:wght@400;600&family=Noto+Sans+TC:wght@400;500;700;900&family=Pixelify+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="intro.css">
+  <link rel="stylesheet" href="adventure.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: {
+              50: '#fffaf1', 100: '#f8edd9', 200: '#efd9b8', 300: '#dfbe86',
+              400: '#c99a55', 500: '#ad7938', 600: '#8d5d2a', 700: '#6f4624',
+              800: '#573820', 900: '#472f1f', 950: '#28190f'
+            },
+            cyan: {
+              50: '#fff9ea', 100: '#faedca', 200: '#f2d99a', 300: '#e5be63',
+              400: '#d6a23d', 500: '#bd812c', 600: '#996022', 700: '#77451f',
+              800: '#60391f', 900: '#51311e'
+            },
+            blue: { 100: '#f5e7cf', 200: '#ead1aa', 300: '#dbb477' },
+            rpg: {
+              cream: '#f7f1e6',       /* 主背景：羊皮紙米色 */
+              parchment: '#efe3d1',   /* 霧面任務面板 */
+              card: '#fffaf2',        /* 暖白卡片 */
+              wood: '#8b5e34',        /* 冒險焦糖棕 */
+              woodDark: '#4b2f20',    /* 深木棕 */
+              gold: '#d6a756',        /* 任務金 */
+              goldLight: '#f7e7bb',   /* 金色微光 */
+              border: '#dec6a3',      /* 羊皮紙外框 */
+              borderDark: '#b18a5d'   /* 深金棕邊框 */
+            },
+            fubon: {
+              DEFAULT: '#8b5e34',
+              dark: '#4b2f20',
+              light: '#b77a3c',
+              accent: '#a66d2c'
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+            pixel: ['"Pixelify Sans"', '"DotGothic16"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #f7f1e6;
+    }
+
+    /* 像素方格背景微紋理 */
+    .rpg-grid-bg {
+      background-image:
+        radial-gradient(#e5d8be 0.75px, transparent 0.75px),
+        radial-gradient(#e5d8be 0.75px, #f7f1e6 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+
+    /* 遊戲感凸起按鈕質感 */
+    .rpg-btn {
+      box-shadow: 0 4px 0 #4b2f20;
+      transition: all 0.15s ease-in-out;
+    }
+    .rpg-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #4b2f20;
+    }
+    .rpg-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #4b2f20;
+    }
+
+    /* 像素卡片立體陰影 */
+    .rpg-card {
+      box-shadow: 0 6px 0 rgba(111,70,36, 0.12), 0 10px 24px -4px rgba(111,70,36, 0.08);
+    }
+    .rpg-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 0 rgba(111,70,36, 0.16), 0 18px 30px -4px rgba(111,70,36, 0.12);
+    }
+
+    /* 漂浮懸吊微動畫 */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+    }
+    @keyframes floatOpposite {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(8px) rotate(-1.5deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(214,167,86, 0.6)); }
+    }
+
+    .animate-float-slow {
+      animation: floatSlow 3.8s ease-in-out infinite;
+    }
+    .animate-float-opposite {
+      animation: floatOpposite 4.2s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+
+    /* 照片跑馬燈循環 */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* 導航文字 Hover 底線像素條 */
+    .rpg-nav-link {
+      position: relative;
+    }
+    .rpg-nav-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: -4px;
+      left: 0;
+      background-color: #8b5e34;
+      transform: scaleX(0);
+      transform-origin: bottom left;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .rpg-nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* 暖金 HUD：用低干擾動態小圖示補足遊戲感 */
+    .ice-orb {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      color: #c58c3a;
+      background: rgba(248, 251, 255, 0.78);
+      border: 2px solid rgba(239,207,141, 0.72);
+      border-radius: 14px;
+      box-shadow: 0 8px 0 rgba(75,47,32, 0.08), 0 16px 28px rgba(139,94,52, 0.12);
+      backdrop-filter: blur(8px);
+      animation: drift 5s ease-in-out infinite;
+    }
+    .ice-orb:nth-child(2n) { animation-delay: -1.7s; animation-duration: 6.2s; }
+    .ice-orb:nth-child(3n) { animation-delay: -3.1s; animation-duration: 7.1s; }
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+      50% { transform: translate3d(0, -14px, 0) rotate(5deg); }
+    }
+    .scanline {
+      background-image: linear-gradient(rgba(214,167,86, .04) 1px, transparent 1px);
+      background-size: 100% 7px;
+    }
+    .hud-corner { position: relative; }
+    .hud-corner::before,
+    .hud-corner::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      pointer-events: none;
+    }
+    .hud-corner::before { top: 8px; left: 8px; border-top: 3px solid #d6a756; border-left: 3px solid #d6a756; }
+    .hud-corner::after { right: 8px; bottom: 8px; border-right: 3px solid #8b5e34; border-bottom: 3px solid #8b5e34; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* 全站冒險進度 HUD */
+    .adventure-hud {
+      position: fixed; right: 18px; top: 50%; z-index: 45;
+      transform: translateY(-50%); width: 42px; padding: 12px 8px;
+      border: 1px solid rgba(239,207,141, .55); border-radius: 18px;
+      background: rgba(15, 23, 42, .82); box-shadow: 0 14px 35px rgba(15, 23, 42, .22);
+      backdrop-filter: blur(12px);
+    }
+    .adventure-hud__track { position: absolute; top: 19px; bottom: 19px; left: 20px; width: 2px; background: rgba(148, 163, 184, .3); }
+    .adventure-hud__fill { width: 100%; height: 0; background: linear-gradient(#efcf8d, #d6a756, #d8a94d); box-shadow: 0 0 12px #d6a756; transition: height .25s ease; }
+    .adventure-dot { position: relative; display: grid; place-items: center; width: 24px; height: 24px; margin: 0 auto 14px; border-radius: 8px; color: #94a3b8; background: #1e293b; border: 1px solid #475569; font-size: 10px; transition: .25s ease; }
+    .adventure-dot:last-child { margin-bottom: 0; }
+    .adventure-dot.active { color: white; background: #a66d2c; border-color: #efcf8d; box-shadow: 0 0 16px rgba(214,167,86,.8); transform: scale(1.12); }
+
+    /* 各章節專屬漂浮道具 */
+    .section-stage { position: relative; overflow: hidden; }
+    .section-sprites { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .section-sprite {
+      position: absolute; display: grid; place-items: center; width: 38px; height: 38px;
+      border-radius: 13px; color: #a66d2c; background: rgba(255,255,255,.68);
+      border: 1px solid rgba(239,207,141,.6); box-shadow: 0 10px 25px rgba(139,94,52,.1);
+      backdrop-filter: blur(7px); animation: spriteDrift 5.5s ease-in-out infinite;
+    }
+    .section-sprite.alt { color: #a86e39; animation-delay: -2.4s; animation-duration: 7s; }
+    .section-sprite.spark { color: #c49349; animation-delay: -4s; animation-duration: 6.4s; }
+    @keyframes spriteDrift { 0%,100%{transform:translateY(0) rotate(-4deg)} 50%{transform:translateY(-13px) rotate(7deg)} }
+
+    /* 技能樹 */
+    .skill-tree { position: relative; }
+    .skill-tree::before { content:''; position:absolute; left:50%; top:8%; bottom:8%; width:3px; transform:translateX(-50%); background:linear-gradient(#f2ddb1,#d6a756,#c08a52,#d8a94d); box-shadow:0 0 15px rgba(214,167,86,.4); border-radius:99px; }
+    .skill-node { position:relative; overflow:visible; }
+    .skill-node::after { content:attr(data-level); position:absolute; top:-13px; right:18px; padding:4px 9px; border-radius:8px; background:#0f172a; color:#f2ddb1; border:1px solid #d6a756; font:700 11px 'Pixelify Sans',sans-serif; box-shadow:0 5px 0 rgba(15,23,42,.15); }
+    .skill-node.is-visible .skill-core { animation: skillUnlock .8s cubic-bezier(.2,.9,.2,1) both; }
+    @keyframes skillUnlock { 0%{transform:scale(.45) rotate(-18deg);filter:brightness(2);opacity:0} 70%{transform:scale(1.14) rotate(4deg)} 100%{transform:scale(1);opacity:1} }
+
+    /* 任務日誌 */
+    .quest-log { background-image:linear-gradient(90deg,rgba(214,167,86,.06) 1px,transparent 1px),linear-gradient(rgba(214,167,86,.06) 1px,transparent 1px); background-size:24px 24px; }
+    .quest-entry { position:relative; transition:.2s ease; }
+    .quest-entry::before { content:'◆'; position:absolute; left:-13px; top:50%; transform:translateY(-50%); color:#d6a756; font-size:9px; background:#fffaf2; padding:2px; }
+    .quest-entry:hover { transform:translateX(5px); border-color:#d6a756; box-shadow:0 8px 18px rgba(139,94,52,.08); }
+
+    /* 導師角色卡與戰利品 */
+    .mentor-card { position:relative; overflow:hidden; transform-style:preserve-3d; perspective:800px; }
+    .mentor-card::before { content:''; position:absolute; width:150px; height:150px; left:50%; top:-45px; transform:translateX(-50%); border:1px dashed rgba(214,167,86,.45); border-radius:50%; animation:spinRune 18s linear infinite; }
+    .mentor-card::after { content:'SR'; position:absolute; top:12px; right:13px; color:#efcf8d; background:#0f172a; border:1px solid #d6a756; border-radius:7px; padding:2px 6px; font:700 11px 'Pixelify Sans',sans-serif; }
+    @keyframes spinRune { to{transform:translateX(-50%) rotate(360deg)} }
+    .mentor-portrait { position:relative; display:block; width:132px; height:132px; margin:0 auto 16px; padding:0; border:0; border-radius:26px; background:transparent; cursor:pointer; perspective:900px; }
+    .mentor-portrait-static { cursor:default; }
+    .portrait-face { position:absolute; inset:0; overflow:hidden; border-radius:26px; border:2px solid #d6a756; background:#f7e7bb; box-shadow:0 9px 0 rgba(75,47,32,.12),0 0 26px rgba(214,167,86,.28); }
+    .portrait-face img { width:100%; height:100%; object-fit:cover; }
+    .portrait-front img { image-rendering:pixelated; }
+    .mentor-portrait::after { content:''; position:absolute; inset:-5px; z-index:-1; border-radius:30px; opacity:0; background:conic-gradient(from 0deg,#d6a756,#c08a52,#d8a94d,#d6a756); filter:blur(7px); transition:opacity .3s ease; }
+    .mentor-portrait:hover::after { opacity:.65; animation:flipAura 2.4s linear infinite; }
+    @keyframes flipAura { to{transform:rotate(360deg)} }
+    .loot-slot { position:relative; overflow:hidden; transition:.25s ease; }
+    .loot-slot::after { content:''; position:absolute; inset:-100% -40%; background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.35) 50%,transparent 58%); transform:translateX(-60%); transition:transform .7s ease; }
+    .loot-slot:hover { transform:translateY(-5px) scale(1.015); border-color:rgba(239,207,141,.65); }
+    .loot-slot:hover::after { transform:translateX(60%); }
+    .loot-slot:hover .loot-icon { animation:lootPop .55s ease; }
+    @keyframes lootPop { 50%{transform:translateY(-8px) rotate(-8deg) scale(1.2)} }
+    .quest-panel-active { animation: questPanelIn .35s ease both; }
+    @keyframes questPanelIn { from{opacity:0;transform:translateX(14px)} to{opacity:1;transform:none} }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 1023px) {
+      .adventure-hud { display:none; }
+      .skill-tree::before { left:24px; transform:none; }
+      .section-sprite:nth-child(n+4) { display:none; }
+    }
+  </style>
+</head>
+<body id="top" class="intro-lock rpg-grid-bg text-slate-800 font-sans antialiased selection:bg-sky-200 selection:text-slate-900 relative">
+  <section class="story-intro" id="story-intro" aria-label="實習營冒險序章">
+    <img class="intro-art" src="assets/intro-clean-beige.webp" alt="" aria-hidden="true">
+    <button class="intro-skip" id="intro-skip" type="button">略過動畫</button>
+    <div class="intro-content">
+      <div class="intro-paper">
+        <span class="intro-label">歡迎來到 2027 大學家寒假實習營</span>
+        <h1 class="intro-message">我們從不同的地方出發，也將帶著不同的收穫回去。</h1>
+        <div class="intro-sub">
+          <p>交換彼此的故事、想法與可能性，在四天的相遇裡，找到屬於自己的下一步。</p>
+          <p class="intro-closing">讓我們用不同的角度、不同的世界，開始冒險吧！</p>
+        </div>
+        <button class="intro-enter" id="intro-enter" type="button"><span>開始探索</span><span class="book-icon" aria-hidden="true">❯</span></button>
+      </div>
+    </div>
+  </section>
+  <button class="replay-intro" id="replay-intro" type="button">重看序章 ✦</button>
+
+  <aside class="adventure-hud" aria-label="冒險進度">
+    <div class="adventure-hud__track"><div id="adventure-fill" class="adventure-hud__fill"></div></div>
+    <a class="adventure-dot active" href="#about-course" data-section="about-course" title="技能樹"><i class="fa-solid fa-wand-sparkles"></i></a>
+    <a class="adventure-dot" href="#schedule" data-section="schedule" title="任務日誌"><i class="fa-solid fa-book"></i></a>
+    <a class="adventure-dot" href="#speakers" data-section="speakers" title="導師"><i class="fa-solid fa-hat-wizard"></i></a>
+    <a class="adventure-dot" href="#takeaway" data-section="takeaway" title="戰利品"><i class="fa-solid fa-gem"></i></a>
+    <a class="adventure-dot" href="#highlights" data-section="highlights" title="評價"><i class="fa-solid fa-star"></i></a>
+    <a class="adventure-dot" href="#gallery" data-section="gallery" title="回憶"><i class="fa-solid fa-camera"></i></a>
+    <a class="adventure-dot" href="#faq" data-section="faq" title="情報"><i class="fa-solid fa-circle-question"></i></a>
+  </aside>
+  <a class="back-to-top" id="back-to-top" href="#top" aria-label="回到頁面頂端" title="回到頂端"><i class="fa-solid fa-chevron-up"></i></a>
+
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#fffaf2]/95 backdrop-blur-md border-b-2 border-rpg-border shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+
+      <!-- 1. 左側雙行階層 Logo 設計（冒險公會徽章感） -->
+      <a href="#" class="flex items-center space-x-3 group shrink-0 py-1">
+        <div class="w-10 h-10 rounded-xl bg-sky-100 border-2 border-rpg-wood flex items-center justify-center text-rpg-wood text-lg shadow-sm group-hover:rotate-6 transition-transform">
+          <i class="fa-solid fa-shield-cat"></i>
+        </div>
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center space-x-1.5 leading-none">
+            <span class="text-xl sm:text-2xl font-black tracking-tight text-fubon">College<span class="text-sky-500 font-pixel">+</span></span>
+            <span class="text-slate-300 text-xs font-light">✕</span>
+            <span class="text-xs sm:text-sm font-bold tracking-wider text-slate-700 uppercase font-pixel">Fubon Life</span>
+          </div>
+          <div class="text-[11px] font-semibold text-slate-500 tracking-wider mt-1 flex items-center gap-1.5 font-pixel">
+            <span class="w-2 h-2 rounded-sm bg-sky-500 animate-pulse"></span>
+            <span>Z.C 中辰公會分處</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. 電腦版 / iPad 橫向導覽（RPG 任務列表風格） -->
+      <div class="hidden lg:flex items-center space-x-2 shrink-0">
+        <nav class="flex items-center space-x-1 text-[13.5px] font-bold text-slate-700">
+          <a href="#about-course" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">四大修煉關卡</a>
+          <a href="#schedule" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">四天修煉手冊</a>
+          <a href="#speakers" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">公會導師</a>
+          <a href="#takeaway" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">掉落戰利品</a>
+          <a href="#highlights" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">冒險者評價</a>
+          <a href="#gallery" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">冒險剪影</a>
+          <a href="#faq" class="px-2.5 py-1.5 rounded-lg hover:bg-sky-100/70 hover:text-rpg-woodDark transition-all whitespace-nowrap rpg-nav-link">問答指南</a>
+        </nav>
+
+        <!-- 官方 IG 圖標 -->
+        <a href="https://instagram.com/college__plus" target="_blank" rel="noopener noreferrer"
+           class="text-slate-400 hover:text-pink-600 text-lg transition-colors px-2 py-1" title="關注官方 IG: @college__plus">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <!-- RPG 金黃任務出發按鈕 -->
+        <a href="https://forms.gle/TiXgMReCXhm22UcB8" target="_blank" rel="noopener noreferrer"
+           class="rpg-btn inline-flex items-center px-4 py-2 bg-gradient-to-b from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-900 border-2 border-rpg-woodDark font-pixel text-xs sm:text-sm font-bold rounded-xl ml-2 tracking-wider">
+          <i class="fa-solid fa-scroll mr-1.5 text-xs"></i> 建立冒險契約
+        </a>
+      </div>
+
+      <!-- 3. 手機 / iPad 直向漢堡按鈕 -->
+      <div class="flex items-center space-x-3 lg:hidden">
+        <a href="https://instagram.com/college__plus" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-pink-600 text-xl p-1">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-700 hover:text-rpg-wood p-2 focus:outline-none" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="mobile-menu">
+          <i id="menu-icon" class="fa-solid fa-compass text-2xl"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- 4. 手機下拉選單 -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#fffaf2]/98 border-b-2 border-rpg-border px-6 py-5 shadow-2xl">
+      <nav class="flex flex-col space-y-3 text-base font-bold text-slate-700">
+        <a href="#about-course" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>四大修煉關卡</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <a href="#schedule" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>四天修煉手冊</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <a href="#speakers" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>公會傳奇導師</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <a href="#takeaway" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>通關掉落戰利品</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <a href="#highlights" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>冒險者好評評鑑</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <a href="#gallery" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>冒險精彩剪影</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <a href="#faq" onclick="closeMobileMenu()" class="py-2 border-b border-sky-100 flex items-center justify-between">
+          <span>常見冒險疑難雜症 FAQ</span> <i class="fa-solid fa-angle-right text-xs text-sky-500"></i>
+        </a>
+        <div class="pt-3">
+          <a href="https://forms.gle/TiXgMReCXhm22UcB8" target="_blank" rel="noopener noreferrer"
+             class="rpg-btn w-full py-3 bg-gradient-to-b from-sky-400 to-sky-500 border-2 border-rpg-woodDark text-slate-900 font-pixel font-bold rounded-xl flex items-center justify-center tracking-wider">
+            <i class="fa-solid fa-feather-pointed mr-2"></i> 建立冒險契約
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="scanline pt-32 pb-16 md:pt-44 md:pb-24 relative overflow-hidden">
+    <!-- 暖金冒險裝飾光暈 -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none -z-0"></div>
+
+    <div class="absolute inset-0 pointer-events-none hidden sm:block" aria-hidden="true">
+      <span class="ice-orb top-[24%] left-[6%]"><i class="fa-solid fa-flask"></i></span>
+      <span class="ice-orb top-[68%] left-[12%]"><i class="fa-solid fa-coins"></i></span>
+      <span class="ice-orb top-[22%] right-[7%]"><i class="fa-solid fa-scroll"></i></span>
+      <span class="ice-orb top-[66%] right-[13%]"><i class="fa-solid fa-compass"></i></span>
+      <span class="ice-orb top-[8%] left-[27%]"><i class="fa-solid fa-snowflake"></i></span>
+      <span class="ice-orb bottom-[8%] right-[29%]"><i class="fa-solid fa-star"></i></span>
+    </div>
+
+    <!-- 漂浮 RPG 小物件（暖金冒險氛圍） -->
+    <div class="hidden md:block absolute top-36 left-12 animate-float-slow pointer-events-none">
+      <div class="bg-sky-100/90 border-2 border-rpg-wood p-3 rounded-2xl shadow-md text-sky-700 flex items-center gap-2">
+        <i class="fa-solid fa-gem text-lg text-cyan-600"></i>
+        <span class="font-pixel text-xs font-bold">EXP +9999</span>
+      </div>
+    </div>
+    <div class="hidden md:block absolute top-40 right-14 animate-float-opposite pointer-events-none">
+      <div class="bg-sky-100/90 border-2 border-rpg-wood p-3 rounded-2xl shadow-md text-sky-800 flex items-center gap-2">
+        <i class="fa-solid fa-dice-d20 text-lg text-sky-600 animate-spin" style="animation-duration: 10s;"></i>
+        <span class="font-pixel text-xs font-bold">LUCK 滿點!</span>
+      </div>
+    </div>
+    <div class="hidden lg:block absolute bottom-20 left-24 animate-float-opposite pointer-events-none">
+      <div class="bg-white/90 border-2 border-sky-300 p-2.5 rounded-xl shadow text-xs font-bold text-slate-700 flex items-center gap-2">
+        <i class="fa-solid fa-wand-magic-sparkles text-sky-500"></i> 獲得稱號：AI 賦能者
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
+
+      <!-- 冒險者招募令標章 -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100/90 text-rpg-woodDark text-xs sm:text-sm font-bold tracking-wide mb-6 border-2 border-sky-300/80 shadow-sm animate-pulse-glow">
+        <i class="fa-solid fa-sparkles text-sky-500"></i>
+        <span>2027 寒假大專生限定・冒險者公會全面召募</span>
+      </div>
+
+      <!-- 主標題：暖金 RPG 質感 -->
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-tight tracking-tight mb-6">
+        解鎖金融思維與職場底氣<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-fubon to-cyan-600">大學家寒假金融實習營</span>
+      </h1>
+
+      <p class="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-medium">
+        等級提升 × 財商副本 × 夥伴羈絆 × 實戰演練！<br class="hidden sm:inline">
+        專為大專在學生設計，4 天零學費自由通關，帶你提早裝備未來的職場核心武器。
+      </p>
+
+      <!-- 冒險者能力值經驗條（Level 1 ➜ Level 99） -->
+      <div class="hud-corner max-w-xl mx-auto mb-10 bg-[#fffaf2]/90 backdrop-blur border-2 border-rpg-border p-5 rounded-2xl shadow-sm text-left">
+        <div class="flex justify-between items-center text-xs font-pixel font-bold mb-1.5 text-slate-700">
+          <span class="flex items-center gap-1.5 text-rpg-woodDark">
+            <i class="fa-solid fa-shield-halved text-sky-500"></i> 當前狀態：LV.1 職場新手冒險者
+          </span>
+          <span class="text-sky-600">通關目標：LV.99 金融精英</span>
+        </div>
+        <div class="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden p-0.5 border border-slate-300">
+          <div class="h-full bg-gradient-to-r from-sky-400 via-sky-500 to-fubon rounded-full w-[35%] animate-pulse"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+          <span>待解鎖技能：AI 工作流、現金流沙盤、事故權益防護、DISC 讀心</span>
+          <span class="font-pixel text-sky-600 font-bold">EXP 35%</span>
+        </div>
+      </div>
+
+      <!-- 快速冒險地標資訊標籤 -->
+      <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3.5 mb-10 text-xs sm:text-sm font-bold text-slate-700">
+        <span class="px-4 py-2 bg-white border-2 border-rpg-border rounded-xl shadow-sm flex items-center gap-1.5">
+          <i class="fa-regular fa-calendar-check text-sky-600"></i> 2027/1/18 (一) - 1/21 (四)
+        </span>
+        <span class="px-4 py-2 bg-white border-2 border-rpg-border rounded-xl shadow-sm flex items-center gap-1.5">
+          <i class="fa-regular fa-clock text-sky-600"></i> 每日 10:00 - 17:00
+        </span>
+        <span class="px-4 py-2 bg-white border-2 border-rpg-border rounded-xl shadow-sm flex items-center gap-1.5">
+          <i class="fa-solid fa-map-location-dot text-fubon"></i> 台中市政核心商辦 27-28F
+        </span>
+        <span class="px-4 py-2 bg-emerald-50 border-2 border-emerald-300 text-emerald-800 rounded-xl shadow-sm flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-heart text-emerald-600"></i> 全程免費・公會投保旅平險
+        </span>
+      </div>
+
+      <p class="text-xs text-slate-400 mt-4">＊本營隊採審核制，預計於 12 月底安排面試後寄發正式錄取資格信件</p>
+    </div>
+  </section>
+
+  <section class="py-14 bg-[#f3eadf] border-y-2 border-rpg-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <span class="font-pixel text-xs font-bold text-sky-600 uppercase tracking-widest bg-sky-100 px-3 py-1 rounded-full border border-sky-300">Quest Line</span>
+        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2" id="timeline-title">冒險者招募任務線</h3>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">清晰 4 步流程，從遞交履歷到正式入團冒險</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+        <!-- 步驟 1 -->
+        <div class="rpg-card bg-white border-2 border-rpg-border p-5 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-xl bg-sky-100 border-2 border-sky-400 font-pixel font-bold text-sky-800 flex items-center justify-center text-sm mb-3">Q1</div>
+          <span class="text-[11px] font-bold text-sky-700 tracking-wider">STEP 01</span>
+          <h4 class="text-base font-bold text-slate-900 mt-0.5">送出冒險契約</h4>
+          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">點擊報名填妥 Google 表單，專案小組將初步進行書面審閱。</p>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="rpg-card bg-white border-2 border-rpg-border p-5 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-xl bg-slate-100 border-2 border-slate-300 font-pixel font-bold text-slate-600 flex items-center justify-center text-sm mb-3">Q2</div>
+          <span class="text-[11px] font-bold text-slate-400 tracking-wider">STEP 02</span>
+          <h4 class="text-base font-bold text-slate-900 mt-0.5">公會雙向面談</h4>
+          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">預計 12 月底陸續以電話或 LINE 安排實體交流（特殊狀況可視訊）。</p>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="rpg-card bg-white border-2 border-rpg-border p-5 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-xl bg-slate-100 border-2 border-slate-300 font-pixel font-bold text-slate-600 flex items-center justify-center text-sm mb-3">Q3</div>
+          <span class="text-[11px] font-bold text-slate-400 tracking-wider">STEP 03</span>
+          <h4 class="text-base font-bold text-slate-900 mt-0.5">領取錄取信函</h4>
+          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">通過面談後寄送錄取資格，專屬輔導員加入聯繫並提前破冰。</p>
+        </div>
+
+        <!-- 步驟 4 -->
+        <div class="rpg-card bg-white border-2 border-rpg-border p-5 rounded-2xl relative">
+          <div class="w-10 h-10 rounded-xl bg-slate-100 border-2 border-slate-300 font-pixel font-bold text-slate-600 flex items-center justify-center text-sm mb-3">Q4</div>
+          <span class="text-[11px] font-bold text-slate-400 tracking-wider">STEP 04</span>
+          <h4 class="text-base font-bold text-slate-900 mt-0.5">1/18 開訓出征</h4>
+          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">抵達台中市政核心 28F 領取專屬識別銘牌，啟動 4 天精采旅程！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-course" class="section-stage py-16 sm:py-20 bg-rpg-cream border-b-2 border-rpg-border">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[14%] left-[3%]"><i class="fa-solid fa-microchip"></i></span><span class="section-sprite alt top-[46%] right-[4%]"><i class="fa-solid fa-book-open"></i></span><span class="section-sprite spark bottom-[10%] left-[6%]"><i class="fa-solid fa-bolt"></i></span><span class="section-sprite bottom-[16%] right-[8%]"><i class="fa-solid fa-shield-halved"></i></span></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <span class="font-pixel text-xs font-bold text-fubon uppercase tracking-widest bg-blue-100 px-3 py-1 rounded-full border border-blue-300">Chapters</span>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-2">四大副本章節在修煉什麼？</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">這不是無聊的單向聽講，4 大主軸帶你實測實戰、拆解生活與真實職場</p>
+      </div>
+
+      <div class="skill-tree grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+        <!-- 副本 1：AI 工具增能 × 現金流桌遊實戰 -->
+        <div class="skill-node rpg-card rpg-card-hover bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 sm:p-8 transition-all" data-level="SKILL 01">
+          <div class="flex items-center space-x-3.5 mb-4">
+            <div class="skill-core w-12 h-12 rounded-2xl bg-sky-100 border-2 border-sky-300 text-sky-800 flex items-center justify-center text-xl shrink-0 font-pixel">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-pixel font-bold text-sky-700 tracking-wider uppercase">Tech & Practical Finance</span>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900">AI 賦能自我 × 現金流桌遊體驗</h3>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            《我獨自升級》教你如何活用當前最前沿的 AI 工具，化身學業與工作上的個人外掛；《財富自由》則導入經典「現金流桌遊」，如大富翁般用沉浸式遊戲模擬一生財務決策，搞懂資產與負債的本質。
+          </p>
+          <div class="bg-sky-50/70 border border-sky-200/80 rounded-xl p-3 text-xs font-semibold text-slate-600 flex flex-wrap gap-1.5 items-center">
+            <span class="text-sky-800 font-bold"><i class="fa-solid fa-dungeon mr-1"></i>探索關卡：</span>
+            <span class="px-2 py-0.5 bg-white border border-sky-200 rounded-md">《我獨自升級（AI實戰）》</span>
+            <span class="px-2 py-0.5 bg-white border border-sky-200 rounded-md">《財富自由（桌遊演練）》</span>
+            <span class="px-2 py-0.5 bg-white border border-sky-200 rounded-md">《ESBI 現金流》</span>
+          </div>
+        </div>
+
+        <!-- 副本 2：幽默車禍實務 × 真實職涯初心 -->
+        <div class="skill-node rpg-card rpg-card-hover bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 sm:p-8 transition-all" data-level="SKILL 02">
+          <div class="flex items-center space-x-3.5 mb-4">
+            <div class="skill-core w-12 h-12 rounded-2xl bg-red-100 border-2 border-red-300 text-red-800 flex items-center justify-center text-xl shrink-0 font-pixel">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-pixel font-bold text-red-700 tracking-wider uppercase">Real Case & True Stories</span>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900">幽默車禍實務 × 揭開保險業真相</h3>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            不推銷、不強迫轉職！由前車廠業務轉職保險的業師帶來《玩命關頭》，以幽默角度拆解真實汽機車車禍現場與理賠權益；在《當幸福來敲門》中，講師更將卸下心防，真誠分享團隊文化與最真實的執業初心。
+          </p>
+          <div class="bg-red-50/70 border border-red-200/80 rounded-xl p-3 text-xs font-semibold text-slate-600 flex flex-wrap gap-1.5 items-center">
+            <span class="text-red-800 font-bold"><i class="fa-solid fa-car-burst mr-1"></i>探索關卡：</span>
+            <span class="px-2 py-0.5 bg-white border border-red-200 rounded-md">《玩命關頭（車禍理賠解析）》</span>
+            <span class="px-2 py-0.5 bg-white border border-red-200 rounded-md">《當幸福來敲門（職涯啟發）》</span>
+            <span class="px-2 py-0.5 bg-white border border-red-200 rounded-md">《金融座談會》</span>
+          </div>
+        </div>
+
+        <!-- 副本 3：深度破冰羈絆 × 國王小天使推理 -->
+        <div class="skill-node rpg-card rpg-card-hover bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 sm:p-8 transition-all" data-level="SKILL 03">
+          <div class="flex items-center space-x-3.5 mb-4">
+            <div class="skill-core w-12 h-12 rounded-2xl bg-cyan-100 border-2 border-cyan-300 text-cyan-800 flex items-center justify-center text-xl shrink-0 font-pixel">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-pixel font-bold text-cyan-700 tracking-wider uppercase">Connection & Mystery</span>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900">破冰感性羈絆 × 國王小天使互動</h3>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            營隊不是冷冰冰的看投影片！《你到底是誰》透過感性互動建立學員與輔導員的信任羈絆；全員參與的《國王小天使》貫穿 4 天，小天使暗中送禮守護，國王靠線索推理身分，在歡笑中收穫同儕情感。
+          </p>
+          <div class="bg-cyan-50/70 border border-cyan-200/80 rounded-xl p-3 text-xs font-semibold text-slate-600 flex flex-wrap gap-1.5 items-center">
+            <span class="text-cyan-800 font-bold"><i class="fa-solid fa-hand-holding-heart mr-1"></i>探索關卡：</span>
+            <span class="px-2 py-0.5 bg-white border border-cyan-200 rounded-md">《你到底是誰（輔導員羈絆）》</span>
+            <span class="px-2 py-0.5 bg-white border border-cyan-200 rounded-md">《國王小天使（守護推理）》</span>
+            <span class="px-2 py-0.5 bg-white border border-cyan-200 rounded-md">《DISC 性格特質》</span>
+          </div>
+        </div>
+
+        <!-- 副本 4：思維激盪辯論 × 學員全自主成發 -->
+        <div class="skill-node rpg-card rpg-card-hover bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 sm:p-8 transition-all" data-level="SKILL 04">
+          <div class="flex items-center space-x-3.5 mb-4">
+            <div class="skill-core w-12 h-12 rounded-2xl bg-emerald-100 border-2 border-emerald-300 text-emerald-800 flex items-center justify-center text-xl shrink-0 font-pixel">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-pixel font-bold text-emerald-700 tracking-wider uppercase">Debate & Self-directed Demo</span>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900">全員激盪辯論 × 學員全自主成發</h3>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            在《思維激盪辯論會》中鍛鍊高壓臨場邏輯！成果發表會更是你們自己的舞台：學員分組為「企劃組」與「表演組」，自編自導主持流程、登台演出，並親手剪輯結訓回顧影片，留下專屬紀念。
+          </p>
+          <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-3 text-xs font-semibold text-slate-600 flex flex-wrap gap-1.5 items-center">
+            <span class="text-emerald-800 font-bold"><i class="fa-solid fa-trophy mr-1"></i>探索關卡：</span>
+            <span class="px-2 py-0.5 bg-white border border-emerald-200 rounded-md">《全員辯論會》</span>
+            <span class="px-2 py-0.5 bg-white border border-emerald-200 rounded-md">《企劃表演全自主成發》</span>
+            <span class="px-2 py-0.5 bg-white border border-emerald-200 rounded-md">《結訓影片製作 ＆ 授證》</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="section-stage py-16 sm:py-24 bg-[#f3eadf]">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[18%] left-[4%]"><i class="fa-solid fa-feather"></i></span><span class="section-sprite alt top-[42%] right-[5%]"><i class="fa-solid fa-hourglass-half"></i></span><span class="section-sprite spark bottom-[12%] left-[7%]"><i class="fa-solid fa-map-location-dot"></i></span><span class="section-sprite bottom-[20%] right-[8%]"><i class="fa-solid fa-scroll"></i></span></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-10">
+        <span class="font-pixel text-xs font-bold text-sky-700 uppercase tracking-widest bg-sky-100 px-3 py-1 rounded-full border border-sky-300">Handbook</span>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-2">四天修煉手冊</h2>
+        <p class="text-slate-500 text-xs sm:text-base mt-1.5">兼顧思維激盪、實務演練與高階金融座談的每日修煉日程</p>
+      </div>
+
+      <!-- Tab 切換按鈕（RPG 地圖分頁感） -->
+      <div class="flex justify-center p-1.5 bg-sky-100/80 border-2 border-rpg-border rounded-2xl max-w-xl mx-auto mb-6 shadow-inner">
+        <button id="tab-0" onclick="switchDay(0)" class="flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all bg-white text-rpg-woodDark border-2 border-sky-300 shadow-sm">Day 1 (1/18)</button>
+        <button id="tab-1" onclick="switchDay(1)" class="flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 hover:text-slate-900">Day 2 (1/19)</button>
+        <button id="tab-2" onclick="switchDay(2)" class="flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 hover:text-slate-900">Day 3 (1/20)</button>
+        <button id="tab-3" onclick="switchDay(3)" class="flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 hover:text-slate-900">Day 4 (1/21)</button>
+      </div>
+
+      <!-- 課表大卡片 -->
+      <div class="quest-log rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-5 sm:p-8">
+
+        <!-- Day 1 -->
+        <div id="day-0" class="space-y-4 sm:space-y-5">
+          <div class="quest-entry border-l-4 border-fubon pl-4 py-2 bg-sky-50/50 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-fubon font-pixel">10:00 - 10:50 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">開訓始業式</h4>
+            <p class="text-xs text-slate-500">公會領航業師：鄭穎</p>
+          </div>
+          <div class="quest-entry border-l-4 border-fubon pl-4 py-2 bg-sky-50/50 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-fubon font-pixel">11:00 - 12:00 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">任務佈達</h4>
+            <p class="text-xs text-slate-500">主講業師：緹駿</p>
+          </div>
+          <div class="bg-sky-100/60 border border-sky-200 rounded-xl p-2.5 text-center text-xs font-bold text-slate-600">
+            <i class="fa-solid fa-utensils text-sky-600 mr-1.5"></i> 12:00 - 13:30 午餐休息時間（學員自理，周邊誠品480地下街豐富）
+          </div>
+          <div class="quest-entry border-l-4 border-fubon pl-4 py-2 bg-sky-50/50 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-fubon font-pixel">13:30 - 14:20 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">我獨自升級（AI 賦能實戰）</h4>
+            <p class="text-xs text-slate-500">主講業師：鄭鈞 ｜ 解鎖 AI 工具在生活與工作中的亮點運用</p>
+          </div>
+          <div class="quest-entry border-l-4 border-fubon pl-4 py-2 bg-sky-50/50 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-fubon font-pixel">14:30 - 17:00 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">財富自由（現金流桌遊實戰）</h4>
+            <p class="text-xs text-slate-500">主講業師：緹駿 ｜ 沉浸式體驗真實財務決策，模擬人生現金流</p>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div id="day-1" class="space-y-4 sm:space-y-5 hidden">
+          <div class="quest-entry border-l-4 border-cyan-500 pl-4 py-2 bg-cyan-50/40 rounded-r-xl border-y border-r border-cyan-100">
+            <span class="text-xs font-bold text-cyan-600 font-pixel">10:00 - 10:50 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">你到底是誰（感性破冰）</h4>
+            <p class="text-xs text-slate-500">主講業師：智翔 ｜ 建立學員與輔導員之間的信任深度羈絆</p>
+          </div>
+          <div class="quest-entry border-l-4 border-cyan-500 pl-4 py-2 bg-cyan-50/40 rounded-r-xl border-y border-r border-cyan-100">
+            <span class="text-xs font-bold text-cyan-600 font-pixel">11:00 - 12:00 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">ESBI 現金流象限解析</h4>
+            <p class="text-xs text-slate-500">主講業師：首文</p>
+          </div>
+          <div class="bg-sky-100/60 border border-sky-200 rounded-xl p-2.5 text-center text-xs font-bold text-slate-600">
+            <i class="fa-solid fa-utensils text-sky-600 mr-1.5"></i> 12:00 - 13:30 午餐休息時間（學員自理）
+          </div>
+          <div class="quest-entry border-l-4 border-cyan-500 pl-4 py-2 bg-cyan-50/40 rounded-r-xl border-y border-r border-cyan-100">
+            <span class="text-xs font-bold text-cyan-600 font-pixel">13:30 - 14:20 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">小組班會交流</h4>
+            <p class="text-xs text-slate-500">專案輔導員共同參與引導</p>
+          </div>
+          <div class="quest-entry border-l-4 border-cyan-500 pl-4 py-2 bg-cyan-50/40 rounded-r-xl border-y border-r border-cyan-100">
+            <span class="text-xs font-bold text-cyan-600 font-pixel">14:30 - 17:00 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">高階金融座談會</h4>
+            <p class="text-xs text-slate-500">主講業師：紹筠 ｜ 與線上業師面對面剖析金融產業趨勢</p>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div id="day-2" class="space-y-4 sm:space-y-5 hidden">
+          <div class="quest-entry border-l-4 border-sky-500 pl-4 py-2 bg-sky-50/40 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-sky-600 font-pixel">10:00 - 12:00 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">思維激盪：全員辯論會</h4>
+            <p class="text-xs text-slate-500">引導業師：家駿 ｜ 實境觀點交鋒，鍛鍊臨場批判邏輯</p>
+          </div>
+          <div class="bg-sky-100/60 border border-sky-200 rounded-xl p-2.5 text-center text-xs font-bold text-slate-600">
+            <i class="fa-solid fa-utensils text-sky-600 mr-1.5"></i> 12:00 - 13:30 午餐休息時間（學員自理）
+          </div>
+          <div class="quest-entry border-l-4 border-sky-500 pl-4 py-2 bg-sky-50/40 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-sky-600 font-pixel">13:30 - 14:20 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">玩命關頭（車禍實務案例解析）</h4>
+            <p class="text-xs text-slate-500">主講業師：桃哥 ｜ 車廠業務轉職視角，幽默破解車禍現場與汽機車險觀念</p>
+          </div>
+          <div class="quest-entry border-l-4 border-sky-500 pl-4 py-2 bg-sky-50/40 rounded-r-xl border-y border-r border-sky-100">
+            <span class="text-xs font-bold text-sky-600 font-pixel">14:30 - 17:00 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">DISC 人格特質與職場應對實戰</h4>
+            <p class="text-xs text-slate-500">主講業師：雅芬姐 ｜ 深度評測自我盲點，掌握職場人際高情商密碼</p>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div id="day-3" class="space-y-4 sm:space-y-5 hidden">
+          <div class="quest-entry border-l-4 border-emerald-500 pl-4 py-2 bg-emerald-50/40 rounded-r-xl border-y border-r border-emerald-100">
+            <span class="text-xs font-bold text-emerald-600 font-pixel">10:00 - 10:50 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">當幸福來敲門（職涯啟發）</h4>
+            <p class="text-xs text-slate-500">主講業師：泓瑋 ｜ 感性剖析保險事業文化、團隊價值與投入初心</p>
+          </div>
+          <div class="quest-entry border-l-4 border-emerald-500 pl-4 py-2 bg-emerald-50/40 rounded-r-xl border-y border-r border-emerald-100">
+            <span class="text-xs font-bold text-emerald-600 font-pixel">11:00 - 12:00 ｜ 27樓中三區教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">國王小天使揭曉時刻</h4>
+            <p class="text-xs text-slate-500">主講業師：鄭穎 ｜ 尋找暗中守護的神秘小天使，同儕情感升溫</p>
+          </div>
+          <div class="bg-sky-100/60 border border-sky-200 rounded-xl p-2.5 text-center text-xs font-bold text-slate-600">
+            <i class="fa-solid fa-utensils text-sky-600 mr-1.5"></i> 12:00 - 13:30 午餐休息時間（學員自理）
+          </div>
+          <div class="quest-entry border-l-4 border-emerald-500 pl-4 py-2 bg-emerald-50/40 rounded-r-xl border-y border-r border-emerald-100">
+            <span class="text-xs font-bold text-emerald-600 font-pixel">13:30 - 14:20 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">小組班會與成果發表彩排</h4>
+            <p class="text-xs text-slate-500">企劃組與表演組總動員，主持流程動線演練</p>
+          </div>
+          <div class="quest-entry border-l-4 border-emerald-500 pl-4 py-2 bg-emerald-50/40 rounded-r-xl border-y border-r border-emerald-100">
+            <span class="text-xs font-bold text-emerald-600 font-pixel">14:30 - 17:00 ｜ 28樓營管教室</span>
+            <h4 class="text-base sm:text-xl font-bold text-slate-900 mt-0.5">精彩成果發表會 ＆ 結訓授證</h4>
+            <p class="text-xs text-slate-500">主講業師：緹駿 ｜ 學員全自主主持登台、自製回顧影片首映與授證</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="speakers" class="section-stage py-16 sm:py-20 bg-rpg-cream border-b-2 border-rpg-border">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[20%] left-[3%]"><i class="fa-solid fa-crown"></i></span><span class="section-sprite alt top-[48%] right-[4%]"><i class="fa-solid fa-comments"></i></span><span class="section-sprite spark bottom-[10%] left-[8%]"><i class="fa-solid fa-medal"></i></span></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <span class="font-pixel text-xs font-bold text-slate-700 uppercase tracking-widest bg-sky-100 px-3 py-1 rounded-full border border-sky-300">Mentors</span>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-2">公會傳奇導師陣容</h2>
+        <p class="text-slate-500 text-xs sm:text-base mt-1.5">跳脫刻板印象，由兼具風趣、專業與溫度的高階團隊親自指導</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <!-- 導師 1：小桃哥 -->
+        <div class="mentor-card rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 text-center hover:border-sky-400 hover:-translate-y-1.5 transition-all">
+          <div class="mentor-portrait mentor-portrait-static">
+            <span class="portrait-face portrait-front"><img src="mentor-pixel/xiaotao.png" alt="小桃哥的中世紀 RPG 像素肖像"></span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900">謝志宏（小桃哥）</h3>
+          <span class="inline-block px-3 py-0.5 bg-sky-100 text-sky-800 text-[11px] font-bold rounded-full mt-1 mb-3 border border-sky-200">《玩命關頭》主講</span>
+          <p class="text-xs text-slate-600 leading-relaxed italic">
+            「用幽默拆解車禍實務的非典型保險人」
+          </p>
+        </div>
+
+        <!-- 導師 2：雅芬姊 -->
+        <div class="mentor-card rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 text-center hover:border-fubon hover:-translate-y-1.5 transition-all">
+          <div class="mentor-portrait mentor-portrait-static">
+            <span class="portrait-face portrait-front"><img src="mentor-pixel/yafen.png" alt="雅芬姊的中世紀 RPG 像素肖像"></span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900">陳雅芬（雅芬姊）</h3>
+          <span class="inline-block px-3 py-0.5 bg-blue-100 text-fubon text-[11px] font-bold rounded-full mt-1 mb-3 border border-blue-200">《DISC 性格特質》主講</span>
+          <p class="text-xs text-slate-600 leading-relaxed italic">
+            「看懂性格的盲點與優勢，才能在人際職場游刃有餘」
+          </p>
+        </div>
+
+        <!-- 導師 3：鄭鈞 -->
+        <div class="mentor-card rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 text-center hover:border-cyan-400 hover:-translate-y-1.5 transition-all">
+          <div class="mentor-portrait mentor-portrait-static">
+            <span class="portrait-face portrait-front"><img src="mentor-pixel/zhengjun.png" alt="鄭鈞的中世紀 RPG 像素肖像"></span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900">鄭鈞</h3>
+          <span class="inline-block px-3 py-0.5 bg-cyan-100 text-cyan-800 text-[11px] font-bold rounded-full mt-1 mb-3 border border-cyan-200">《我獨自升級》主講</span>
+          <p class="text-xs text-slate-600 leading-relaxed italic">
+            「AI 不是取代你的工具，而是讓你領先同儕的個人外掛」
+          </p>
+        </div>
+
+        <!-- 導師 4：周泓瑋 -->
+        <div class="mentor-card rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-3xl p-6 text-center hover:border-emerald-400 hover:-translate-y-1.5 transition-all">
+          <div class="mentor-portrait mentor-portrait-static">
+            <span class="portrait-face portrait-front"><img src="mentor-pixel/hongwei.png" alt="周泓瑋的中世紀 RPG 像素肖像"></span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900">周泓瑋</h3>
+          <span class="inline-block px-3 py-0.5 bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-full mt-1 mb-3 border border-emerald-200">《當幸福來敲門》主講</span>
+          <p class="text-xs text-slate-600 leading-relaxed italic">
+            「走入真實職場的第一步，先找回對未來的熱情與初心」
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="takeaway" class="section-stage py-16 sm:py-20 bg-[#f3eadf] border-b-2 border-rpg-border">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[18%] left-[4%]"><i class="fa-solid fa-coins"></i></span><span class="section-sprite alt top-[55%] right-[4%]"><i class="fa-solid fa-gem"></i></span><span class="section-sprite spark bottom-[8%] left-[7%]"><i class="fa-solid fa-key"></i></span></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="loot-board rounded-3xl p-6 sm:p-12 relative overflow-hidden">
+        <div class="loot-board__stamp" aria-hidden="true"><i class="fa-solid fa-sack-dollar"></i></div>
+
+        <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 relative z-10">
+          <span class="font-pixel text-xs tracking-widest text-amber-900 uppercase bg-amber-100 px-3 py-1 rounded border-2 border-amber-700/50">Travel Pack</span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 text-[#4b2f20]">結訓後，你將真正帶走什麼戰利品？</h2>
+          <p class="text-[#76543a] text-xs sm:text-base mt-2">不只是 4 天回憶，更是能放進行囊、繼續帶著走的實戰收穫</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+          <div class="loot-slot flex items-start space-x-3.5 p-4 sm:p-5 rounded-xl">
+            <div class="loot-icon w-9 h-9 text-amber-900 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-scroll text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-base text-[#4b2f20]">專屬結訓紀念證書</h4>
+              <p class="text-xs text-[#76543a] mt-1">全程參與獲頒精緻結訓證書，儀式感拉滿，紀念 4 天的突破與付出。</p>
+            </div>
+          </div>
+
+          <div class="loot-slot flex items-start space-x-3.5 p-4 sm:p-5 rounded-xl">
+            <div class="loot-icon w-9 h-9 text-amber-900 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-brain text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-base text-[#4b2f20]">AI 實戰技能與財商思維</h4>
+              <p class="text-xs text-[#76543a] mt-1">學會 AI 工作流與現金流思維，建立受用一生的財商底層架構。</p>
+            </div>
+          </div>
+
+          <div class="loot-slot flex items-start space-x-3.5 p-4 sm:p-5 rounded-xl">
+            <div class="loot-icon w-9 h-9 text-amber-900 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-award text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-base text-[#4b2f20]">金融證照輔導與報名費補助</h4>
+              <p class="text-xs text-[#76543a] mt-1">營隊表現優異者，享有專業考照資源及報名費用實質補助。</p>
+            </div>
+          </div>
+
+          <div class="loot-slot flex items-start space-x-3.5 p-4 sm:p-5 rounded-xl">
+            <div class="loot-icon w-9 h-9 text-amber-900 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-users text-sm"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-base text-[#4b2f20]">跨校高凝聚人脈與專屬輔導員</h4>
+              <p class="text-xs text-[#76543a] mt-1">結識來自中部各大專院校夥伴，更有資深輔導員提供經驗分享與諮詢。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="highlights" class="section-stage py-16 sm:py-20 bg-rpg-cream border-b-2 border-rpg-border">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[18%] left-[4%]"><i class="fa-solid fa-star"></i></span><span class="section-sprite alt bottom-[16%] right-[5%]"><i class="fa-solid fa-heart"></i></span><span class="section-sprite spark top-[28%] right-[9%]"><i class="fa-solid fa-thumbs-up"></i></span></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <span class="font-pixel text-xs font-bold text-sky-700 uppercase tracking-widest bg-sky-100 px-3 py-1 rounded-full border border-sky-300">Social Proof</span>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-2">冒險者真實口碑推薦</h2>
+        <p class="text-slate-500 text-xs sm:text-base mt-1.5">真實問卷回饋統計，中部各大專院校好評度極高的金融實習營隊</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center sm:space-x-6 text-center sm:text-left">
+          <div class="text-5xl sm:text-6xl font-black text-fubon mb-2 sm:mb-0 font-pixel">95%</div>
+          <div>
+            <div class="text-lg sm:text-xl font-black text-slate-900">歷屆實習學員表示收穫超乎預期</div>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">紮實有趣的實務演練與導師引導，顛覆傳統枯燥的課堂體驗</p>
+          </div>
+        </div>
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center sm:space-x-6 text-center sm:text-left">
+          <div class="text-5xl sm:text-6xl font-black text-sky-600 mb-2 sm:mb-0 font-pixel">96.7%</div>
+          <div>
+            <div class="text-lg sm:text-xl font-black text-slate-900">學員樂意推薦朋友一同參加</div>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">口碑相傳、真實肯定，跨校同儕一致推薦的寒假充實首選</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section-stage py-16 sm:py-20 bg-[#f3eadf] overflow-hidden border-b-2 border-rpg-border">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[18%] left-[4%]"><i class="fa-solid fa-camera-retro"></i></span><span class="section-sprite alt bottom-[12%] right-[5%]"><i class="fa-solid fa-film"></i></span><span class="section-sprite spark top-[22%] right-[10%]"><i class="fa-solid fa-wand-magic-sparkles"></i></span></div>
+    <div class="max-w-7xl mx-auto px-4 text-center mb-8 relative z-10">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900">歷屆營隊精彩剪影</h2>
+      <p class="text-slate-500 text-xs sm:text-base mt-1.5">實務演練、思辨激盪與結訓歡笑的 4 天回憶</p>
+    </div>
+
+    <div class="w-full overflow-hidden py-2">
+      <div class="marquee-track flex gap-4">
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 專案小組熱烈討論
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 辯論會思維碰撞現場
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 導師親切解答與互動
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 結訓大合照與榮譽授證
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 專案小組熱烈討論
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 辯論會思維碰撞現場
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 導師親切解答與互動
+        </div>
+        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
+          <i class="fa-regular fa-image mr-2"></i> 結訓大合照與榮譽授證
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-stage py-16 sm:py-24 bg-rpg-cream">
+    <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[18%] left-[5%]"><i class="fa-solid fa-magnifying-glass"></i></span><span class="section-sprite alt top-[48%] right-[5%]"><i class="fa-solid fa-circle-question"></i></span><span class="section-sprite spark bottom-[12%] left-[8%]"><i class="fa-solid fa-lightbulb"></i></span></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-10 sm:mb-12">
+        <span class="font-pixel text-xs font-bold text-sky-700 uppercase tracking-widest bg-sky-100 px-3 py-1 rounded-full border border-sky-300">FAQ</span>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mt-2">常見冒險疑難雜症解答</h2>
+        <p class="text-slate-500 text-xs sm:text-base mt-1.5">消除所有疑慮，讓你安心參與學習</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full text-left px-5 py-4 font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>非商管或財金科系也可以報名嗎？完全沒基礎聽得懂嗎？</span>
+            <i class="fa-solid fa-chevron-down text-xs text-sky-600 transition-transform duration-200 ml-3 shrink-0"></i>
+          </button>
+          <div class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sky-100/70 pt-3">
+            完全可以！實習營非常歡迎理工、設計、外語、文史等各系所大專院校學生參加。課程兼具軟性自我探索、DISC 特質與實用財商思維，零基礎也能輕鬆上手。
+          </div>
+        </div>
+
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full text-left px-5 py-4 font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>參加實習營需要繳交任何費用嗎？</span>
+            <i class="fa-solid fa-chevron-down text-xs text-sky-600 transition-transform duration-200 ml-3 shrink-0"></i>
+          </button>
+          <div class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sky-100/70 pt-3">
+            本實習營為<strong>全程免費參與</strong>，且由主辦單位為全體學員投保活動期間旅平險，保障安全。每日午餐由學員自理（商辦周邊美食與誠品480地下街眾多）。
+          </div>
+        </div>
+
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full text-left px-5 py-4 font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>這會不會需要推銷保單、買保險或強迫增員？</span>
+            <i class="fa-solid fa-chevron-down text-xs text-sky-600 transition-transform duration-200 ml-3 shrink-0"></i>
+          </button>
+          <div class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sky-100/70 pt-3">
+            <strong>絕對不會。</strong>實習營核心著重在青年財商養成、職場軟實力、團隊思辨與人格適性探索，課程與營隊期間完全不涉及任何商品推銷或保單行銷任務。
+          </div>
+        </div>
+
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full text-left px-5 py-4 font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>報名流程與錄取機制是什麼？需要準備資料嗎？</span>
+            <i class="fa-solid fa-chevron-down text-xs text-sky-600 transition-transform duration-200 ml-3 shrink-0"></i>
+          </button>
+          <div class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sky-100/70 pt-3">
+            本營隊採<strong>審核制</strong>。填妥 Google 表單後，將於 12 月底陸續以電話、LINE 或 Email 安排面試交流（現場面試為主，特殊狀況可彈性安排視訊），通過即發送正式錄取通知。填表無需檢附成績單。
+          </div>
+        </div>
+
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full text-left px-5 py-4 font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>活動地點在哪裡？有服裝儀容規定嗎？</span>
+            <i class="fa-solid fa-chevron-down text-xs text-sky-600 transition-transform duration-200 ml-3 shrink-0"></i>
+          </button>
+          <div class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sky-100/70 pt-3">
+            活動地點位於<strong>台中市西屯區市政路 386 號（豐邑市政核心商辦 27-28 樓）</strong>，請學員自行前往。第一天現場有工作人員引導，後續會發放專屬識別名牌通行。服裝以<strong>舒適、休閒得體</strong>即可（嚴禁穿著拖鞋）。
+          </div>
+        </div>
+
+        <div class="rpg-card bg-[#fffaf2] border-2 border-rpg-border rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full text-left px-5 py-4 font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>我們填寫的個人資料安全嗎？會被用在哪裡？</span>
+            <i class="fa-solid fa-chevron-down text-xs text-sky-600 transition-transform duration-200 ml-3 shrink-0"></i>
+          </button>
+          <div class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sky-100/70 pt-3">
+            本表單所蒐集之個人資料僅供本次寒假實習營聯繫、面試安排、學員專屬名牌、結訓紀念證書印製及依法投保活動旅平險之用，絕不外流或挪作其他行銷用途。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-slate-400 pt-16 pb-28 md:pb-16 border-t-2 border-slate-800 text-xs sm:text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <div class="w-12 h-12 mx-auto rounded-2xl bg-sky-400/20 text-sky-400 flex items-center justify-center text-xl mb-3 border border-sky-500/30">
+        <i class="fa-solid fa-flag-checkered"></i>
+      </div>
+      <h3 class="text-xl sm:text-3xl font-black text-white mb-2">準備好在寒假踏出領先的第一步了嗎？</h3>
+      <p class="text-slate-400 max-w-xl mx-auto mb-6 text-xs sm:text-sm">
+        公會席位有限，立即填寫 Google 表單報名，爭取面談資格！
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mb-10">
+        <a href="https://forms.gle/TiXgMReCXhm22UcB8" target="_blank" rel="noopener noreferrer"
+           class="rpg-btn w-full sm:w-auto inline-block px-8 py-3.5 bg-gradient-to-b from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-pixel text-base font-bold rounded-2xl tracking-wider">
+          <i class="fa-solid fa-scroll mr-1.5 text-xs"></i> 建立冒險契約
+        </a>
+        <a href="https://instagram.com/college__plus" target="_blank" rel="noopener noreferrer"
+           class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-pink-400 text-xs sm:text-sm font-bold rounded-2xl border border-slate-700 transition-all">
+          <i class="fa-brands fa-instagram text-base mr-2"></i> 追蹤公會 IG：@college__plus
+        </a>
+      </div>
+
+      <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-2 text-slate-500 text-[11px] sm:text-xs">
+        <div>
+          主辦：College+ 大學家金融學習平台 ｜ 協辦：富邦人壽中辰通訊處
+        </div>
+        <div>
+          公會據點：台中市西屯區市政路 386 號 27 樓之 1（豐邑市政核心）
+        </div>
+      </div>
+      <div class="mt-4 text-slate-600 text-[10px] sm:text-[11px]">
+        ＊主辦單位保有最終修改、變更、活動解釋及取消本活動之權利，相關異動將另行公告通知。
+      </div>
+    </div>
+  </footer>
+
+  <!-- 手機端底部浮動 CTA -->
+  <div class="md:hidden fixed bottom-4 left-4 right-4 z-40">
+    <a href="https://forms.gle/TiXgMReCXhm22UcB8" target="_blank" rel="noopener noreferrer"
+       class="rpg-btn w-full flex items-center justify-center py-3.5 px-6 bg-gradient-to-b from-sky-400 to-sky-500 text-slate-950 font-pixel font-bold text-sm rounded-2xl border-2 border-rpg-woodDark tracking-wide">
+      <i class="fa-solid fa-scroll mr-2"></i> 建立冒險契約
+    </a>
+  </div>
+
+  <script>
+    // 手機版漢堡選單開關
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', 'true');
+        icon.classList.remove('fa-compass');
+        icon.classList.add('fa-xmark');
+      } else {
+        menu.classList.add('hidden');
+        document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', 'false');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-compass');
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      if (menu) {
+        menu.classList.add('hidden');
+        document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
+        if (icon) {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-compass');
+        }
+      }
+    }
+
+    // 課表切換函式
+    function switchDay(index) {
+      for (let i = 0; i < 4; i++) {
+        const tab = document.getElementById(`tab-${i}`);
+        const content = document.getElementById(`day-${i}`);
+        if (i === index) {
+          tab.className = "flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all bg-white text-rpg-woodDark border-2 border-sky-300 shadow-sm";
+          content.classList.remove('hidden');
+          content.classList.remove('quest-panel-active');
+          void content.offsetWidth;
+          content.classList.add('quest-panel-active');
+        } else {
+          tab.className = "flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 hover:text-slate-900";
+          content.classList.add('hidden');
+        }
+      }
+    }
+
+    // FAQ 手風琴開關
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+
+    // 智能活動時程狀態判斷
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealTargets = document.querySelectorAll('section > div, .rpg-card');
+      revealTargets.forEach((target) => target.classList.add('reveal'));
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      revealTargets.forEach((target) => revealObserver.observe(target));
+
+      const adventureDots = [...document.querySelectorAll('.adventure-dot')];
+      const adventureFill = document.getElementById('adventure-fill');
+      const updateAdventureHud = () => {
+        const marker = window.scrollY + window.innerHeight * 0.42;
+        let activeIndex = 0;
+        adventureDots.forEach((dot, index) => {
+          const section = document.getElementById(dot.dataset.section);
+          if (section && section.offsetTop <= marker) activeIndex = index;
+        });
+        adventureDots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+        if (adventureFill) adventureFill.style.height = `${(activeIndex / Math.max(adventureDots.length - 1, 1)) * 100}%`;
+      };
+      updateAdventureHud();
+      window.addEventListener('scroll', updateAdventureHud, { passive: true });
+
+      const campEndDate = new Date("2027-01-22T00:00:00");
+      const today = new Date();
+      if (today >= campEndDate) {
+        const title = document.getElementById("timeline-title");
+        if (title) {
+          title.innerText = "2027 寒假冒險篇章已圓滿通關（歡迎預約下一期）";
+        }
+      }
+    });
+  </script>
+  <script src="intro.js"></script>
+  <script src="adventure.js"></script>
+</body>
+</html>
