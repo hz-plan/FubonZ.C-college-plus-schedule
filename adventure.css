@@ -1,0 +1,41 @@
+:root{--quest-ink:#4b2f20;--quest-brown:#8b5e34;--quest-gold:#d6a756;--quest-paper:#fff8e8;--quest-paper-deep:#f1dfbd}
+
+/* 序章後的單一羊皮紙對話 */
+.quest-dialog{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:24px;background:rgba(24,18,12,.58);font-family:"Noto Sans TC",sans-serif;cursor:pointer;outline:none;animation:dialogShadeIn .28s ease both}
+.quest-dialog__paper{position:relative;width:min(690px,calc(100vw - 18px));aspect-ratio:1/1;padding:17% 16% 19%;color:var(--quest-ink);text-align:center;background:url("assets/dialog-scroll.webp") center/100% 100% no-repeat;border:0;box-shadow:none;cursor:default;isolation:isolate;image-rendering:pixelated;animation:paperEnter .46s cubic-bezier(.22,.8,.32,1) both}
+.quest-dialog__paper::before{display:none}
+.quest-dialog__eyebrow{color:#966127;font:800 .82rem "Pixelify Sans","Noto Sans TC",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.quest-dialog__title{margin:9px 0 15px;font-size:clamp(1.55rem,4vw,2.45rem);font-weight:900;line-height:1.35;text-wrap:balance}.quest-dialog__title span,.quest-dialog__copy span{display:inline}
+.quest-dialog__copy{margin:0;color:#65472d;font-size:clamp(.96rem,2.2vw,1.08rem);font-weight:650;line-height:1.8;text-wrap:balance}
+.quest-dialog__typing{min-height:1.8em;margin:23px 0 0;padding-top:15px;color:#8d5d2a;font:800 clamp(.82rem,2vw,.95rem) "DotGothic16","Noto Sans TC",sans-serif;letter-spacing:.06em}
+.quest-dialog__cursor{display:inline-block;width:.62em;height:1.05em;margin-left:3px;vertical-align:-.12em;background:#8d5d2a;animation:typingCursor .72s steps(1,end) infinite}
+.quest-dialog__quill{position:absolute;right:17%;top:15%;display:flex;align-items:flex-end;gap:4px;color:#5c3821;font-size:2.2rem;transform:rotate(-12deg);filter:drop-shadow(3px 3px 0 rgba(90,52,28,.18))}.quest-dialog__quill .fa-fill-drip{font-size:.8rem;color:#342115}.quest-dialog__seal{position:absolute;right:18%;bottom:19%;display:grid;place-items:center;width:48px;height:48px;color:#f7d98a;background:#8f3c2e;border:4px double #5d241c;border-radius:4px;box-shadow:3px 4px 0 rgba(65,31,19,.28);font:800 .85rem "Pixelify Sans",sans-serif;transform:rotate(-6deg);opacity:.92}
+@keyframes dialogShadeIn{from{opacity:0}to{opacity:1}}@keyframes paperEnter{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}@keyframes typingCursor{50%{opacity:0}}
+
+/* 戰利品：改為羊皮紙行囊清單，銜接全站暖色冒險材質 */
+.loot-board{color:#4b2f20;background:repeating-linear-gradient(0deg,rgba(111,69,34,.035) 0 2px,transparent 2px 8px),linear-gradient(112deg,#d1ab70,#f5e4bf 8%,#fff3d3 50%,#ead0a0 92%,#bd8b4e);border:4px solid #6b4224;box-shadow:9px 10px 0 rgba(92,56,31,.24),0 24px 52px rgba(76,47,26,.2),inset 0 0 40px rgba(111,69,34,.16);clip-path:polygon(1% 2%,13% 1%,24% 2%,36% .7%,49% 2%,62% .8%,75% 2%,88% .7%,99% 2%,98.5% 24%,99.3% 48%,98.5% 72%,99% 98%,86% 99%,74% 98%,61% 99.3%,49% 98%,36% 99%,23% 98%,11% 99%,1% 97%,1.5% 74%,.7% 51%,1.5% 27%)}
+.loot-board__stamp{position:absolute;right:22px;top:22px;display:grid;place-items:center;width:54px;height:54px;color:#7b4b25;border:4px double #8b5e34;border-radius:50%;font-size:1.35rem;transform:rotate(8deg);opacity:.48}
+.loot-board .loot-slot{position:relative;background:rgba(255,249,231,.58);border:2px solid rgba(111,69,34,.38);box-shadow:4px 4px 0 rgba(120,75,38,.12)}
+.loot-board .loot-slot::after{content:"";position:absolute;left:12px;right:12px;bottom:-3px;border-bottom:2px dashed rgba(120,75,38,.23)}
+.loot-board .loot-icon{border:2px solid #8b5e34;background:#e2bd7c;border-radius:3px;box-shadow:3px 3px 0 rgba(91,55,29,.22)}
+@media(max-width:520px){.quest-dialog{padding:8px}.quest-dialog__paper{width:min(96vw,460px);padding:18% 15% 20%}.quest-dialog__eyebrow{display:block;padding:0 48px;font-size:.64rem;white-space:nowrap}.quest-dialog__title{font-size:clamp(1.08rem,5.25vw,1.34rem);margin:7px 0 10px;line-height:1.42}.quest-dialog__title span,.quest-dialog__copy span{display:block;white-space:nowrap}.quest-dialog__copy{font-size:clamp(.72rem,3.45vw,.86rem);line-height:1.7}.quest-dialog__typing{margin-top:13px;padding:10px 0 0;font-size:clamp(.66rem,3.05vw,.78rem);letter-spacing:.025em;white-space:nowrap}.quest-dialog__quill{right:16%;top:14%;font-size:1.45rem}.quest-dialog__seal{right:17%;bottom:19%;width:36px;height:36px}.loot-board__stamp{right:14px;top:15px;width:44px;height:44px}}
+
+/* 右側定位條同步記錄已探索章節 */
+.adventure-dot.explored{color:#2d1b10;background:#d8a94d;border-color:#f0d88d;box-shadow:0 0 11px rgba(214,167,86,.55)}
+.adventure-dot.explored.active{color:white;background:#8d5d2a}
+
+/* 首次抵達章節提示 */
+.unlock-toast{position:fixed;top:max(94px,calc(env(safe-area-inset-top) + 80px));left:50%;z-index:9995;display:flex;align-items:center;gap:12px;width:min(390px,calc(100vw - 28px));padding:12px 16px;color:#fff7e8;background:rgba(57,35,22,.95);border:2px solid #d6a756;border-radius:10px;box-shadow:0 10px 30px rgba(44,27,16,.32);opacity:0;transform:translate(-50%,-14px) scale(.96);pointer-events:none;transition:.28s ease}
+.unlock-toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
+.unlock-toast__rune{display:grid;place-items:center;width:34px;height:34px;color:#3b2415;background:#e2b760;border:2px solid #f5d98f;border-radius:7px;animation:runePulse 1.25s ease-in-out infinite}
+.unlock-toast strong{display:block;font:800 .82rem "Pixelify Sans","Noto Sans TC",sans-serif;letter-spacing:.05em}.unlock-toast span{display:block;margin-top:2px;color:#ead8b9;font-size:.78rem}
+@keyframes runePulse{50%{transform:scale(1.08);filter:brightness(1.13)}}
+
+/* 導師卡：輕量像素登場，不增加圖片容量 */
+.mentor-card .mentor-portrait{opacity:0;transform:translateY(16px) scale(.93)}
+.mentor-card.is-visible .mentor-portrait{animation:mentorPixelIn .68s steps(7,end) both}
+.mentor-card:nth-child(2).is-visible .mentor-portrait{animation-delay:.09s}.mentor-card:nth-child(3).is-visible .mentor-portrait{animation-delay:.18s}.mentor-card:nth-child(4).is-visible .mentor-portrait{animation-delay:.27s}
+@keyframes mentorPixelIn{0%{opacity:0;transform:translateY(18px) scale(.9);filter:contrast(1.8) saturate(.55)}45%{opacity:.8;transform:translateY(6px) scale(1.04);filter:contrast(1.5) saturate(.8)}100%{opacity:1;transform:none;filter:none}}
+
+@media(min-width:521px) and (max-width:640px){.quest-dialog{padding:18px 10px}.quest-dialog__paper{padding:17% 16% 19%}.unlock-toast{top:max(68px,calc(env(safe-area-inset-top) + 58px))}}
+@media(prefers-reduced-motion:reduce){.quest-dialog,.quest-dialog__paper,.unlock-toast{transition:none!important;animation:none!important}.quest-dialog__cursor,.unlock-toast__rune,.mentor-card.is-visible .mentor-portrait{animation:none!important}.mentor-card .mentor-portrait{opacity:1;transform:none}}
