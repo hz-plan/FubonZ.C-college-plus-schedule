@@ -129,20 +129,6 @@
       animation: pulseGlow 2.5s ease-in-out infinite;
     }
 
-    /* 照片跑馬燈循環 */
-    @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 24s linear infinite;
-    }
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
-
     /* 導航文字 Hover 底線像素條 */
     .rpg-nav-link {
       position: relative;
@@ -907,36 +893,45 @@
   <section id="gallery" class="section-stage py-16 sm:py-20 bg-[#f3eadf] overflow-hidden border-b-2 border-rpg-border">
     <div class="section-sprites" aria-hidden="true"><span class="section-sprite top-[18%] left-[4%]"><i class="fa-solid fa-camera-retro"></i></span><span class="section-sprite alt bottom-[12%] right-[5%]"><i class="fa-solid fa-film"></i></span><span class="section-sprite spark top-[22%] right-[10%]"><i class="fa-solid fa-wand-magic-sparkles"></i></span></div>
     <div class="max-w-7xl mx-auto px-4 text-center mb-8 relative z-10">
+      <span class="font-pixel text-xs font-bold text-amber-900 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded border border-amber-700/40">Adventure Archive</span>
       <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900">歷屆營隊精彩剪影</h2>
-      <p class="text-slate-500 text-xs sm:text-base mt-1.5">實務演練、思辨激盪與結訓歡笑的 4 天回憶</p>
+      <p class="text-slate-500 text-xs sm:text-base mt-1.5">從第一次相遇、並肩闖關，到帶著收穫完成旅程</p>
     </div>
 
-    <div class="w-full overflow-hidden py-2">
-      <div class="marquee-track flex gap-4">
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 專案小組熱烈討論
+    <div class="gallery-shell max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+      <div class="gallery-carousel" aria-label="歷屆營隊照片跑馬燈">
+        <button class="gallery-arrow gallery-arrow--prev" id="gallery-prev" type="button" aria-label="查看上一張照片"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <div class="gallery-viewport" id="gallery-viewport" tabindex="0">
+          <div class="gallery-track">
+        <button class="gallery-card gallery-card--hero" type="button" data-photo="2" aria-label="放大觀看歷屆營隊大合照"><img src="gallery/photo-02.webp" alt="歷屆營隊戶外大合照" loading="lazy"><span>我們從不同地方出發</span></button>
+        <button class="gallery-card gallery-card--wide" type="button" data-photo="3" aria-label="放大觀看小組實作照片"><img src="gallery/photo-03.webp" alt="學員進行桌上實作活動" loading="lazy"><span>一起動手實作</span></button>
+        <button class="gallery-card" type="button" data-photo="4" aria-label="放大觀看團隊活動照片"><img src="gallery/photo-04.webp" alt="學員投入團隊活動" loading="lazy"><span>在互動中找到答案</span></button>
+        <button class="gallery-card" type="button" data-photo="5" aria-label="放大觀看實作交流照片"><img src="gallery/photo-05.webp" alt="學員圍桌進行實作交流" loading="lazy"><span>每個想法都值得被聽見</span></button>
+        <button class="gallery-card gallery-card--portrait" type="button" data-photo="6" aria-label="放大觀看團隊討論照片"><img src="gallery/photo-06.webp" alt="學員進行團隊討論與桌上活動" loading="lazy"><span>把不同觀點放上桌</span></button>
+        <button class="gallery-card" type="button" data-photo="8" aria-label="放大觀看課堂討論照片"><img src="gallery/photo-08.webp" alt="學員在會議桌進行討論" loading="lazy"><span>交流，也是一種成長</span></button>
+        <button class="gallery-card" type="button" data-photo="10" aria-label="放大觀看圓桌分享照片"><img src="gallery/photo-10.webp" alt="學員圍桌分享與交流" loading="lazy"><span>從陌生到並肩同行</span></button>
+        <button class="gallery-card gallery-card--wide" type="button" data-photo="11" aria-label="放大觀看營隊課堂照片"><img src="gallery/photo-11.webp" alt="營隊課堂中的學員" loading="lazy"><span>專注投入每一場修煉</span></button>
+        <button class="gallery-card" type="button" data-photo="21" aria-label="放大觀看結訓時刻照片"><img src="gallery/photo-21.webp" alt="學員結訓時刻與舞台互動" loading="lazy"><span>帶著收穫完成旅程</span></button>
+
+        <button class="gallery-card" type="button" data-photo="1" aria-label="放大觀看迎賓繪板照片"><img src="gallery/photo-01.webp" alt="College+ 營隊迎賓繪板" loading="lazy"><span>冒險從這裡開始</span></button>
+        <button class="gallery-card" type="button" data-photo="7" aria-label="放大觀看課程分享照片"><img src="gallery/photo-07.webp" alt="講師進行課程分享" loading="lazy"><span>從真實經驗中學習</span></button>
+        <button class="gallery-card" type="button" data-photo="9" aria-label="放大觀看小組對話照片"><img src="gallery/photo-09.webp" alt="學員進行小組對話" loading="lazy"><span>讓每種聲音彼此碰撞</span></button>
+        <button class="gallery-card" type="button" data-photo="12" aria-label="放大觀看授證照片 1"><img src="gallery/photo-12.webp" alt="學員獲頒結訓證書" loading="lazy"><span>任務完成，獲得證書</span></button>
+        <button class="gallery-card" type="button" data-photo="13" aria-label="放大觀看授證照片 2"><img src="gallery/photo-13.webp" alt="學員獲頒結訓證書並合影" loading="lazy"><span>記住一起努力的時刻</span></button>
+        <button class="gallery-card" type="button" data-photo="14" aria-label="放大觀看授證照片 3"><img src="gallery/photo-14.webp" alt="學員與夥伴展示結訓證書" loading="lazy"><span>把新的勇氣帶回去</span></button>
+        <button class="gallery-card" type="button" data-photo="15" aria-label="放大觀看授證照片 4"><img src="gallery/photo-15.webp" alt="學員結訓授證合影" loading="lazy"><span>每個人都有自己的收穫</span></button>
+        <button class="gallery-card" type="button" data-photo="16" aria-label="放大觀看授證照片 5"><img src="gallery/photo-16.webp" alt="學員開心展示結訓證書" loading="lazy"><span>分享完成挑戰的喜悅</span></button>
+        <button class="gallery-card" type="button" data-photo="17" aria-label="放大觀看授證照片 6"><img src="gallery/photo-17.webp" alt="學員與夥伴慶祝結訓" loading="lazy"><span>旅程結束，連結留下</span></button>
+        <button class="gallery-card" type="button" data-photo="18" aria-label="放大觀看授證照片 7"><img src="gallery/photo-18.webp" alt="學員展示結訓證書與紀念品" loading="lazy"><span>為四天的投入留下紀念</span></button>
+        <button class="gallery-card" type="button" data-photo="19" aria-label="放大觀看授證照片 8"><img src="gallery/photo-19.webp" alt="學員授證後的開心合影" loading="lazy"><span>帶著笑容前往下一站</span></button>
+        <button class="gallery-card" type="button" data-photo="20" aria-label="放大觀看團體授證照片"><img src="gallery/photo-20.webp" alt="多位學員共同展示結訓證書" loading="lazy"><span>並肩完成共同任務</span></button>
+          </div>
         </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 辯論會思維碰撞現場
-        </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 導師親切解答與互動
-        </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 結訓大合照與榮譽授證
-        </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 專案小組熱烈討論
-        </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 辯論會思維碰撞現場
-        </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 導師親切解答與互動
-        </div>
-        <div class="w-64 sm:w-80 md:w-96 h-44 sm:h-56 bg-white rounded-2xl flex items-center justify-center text-slate-400 font-bold text-sm sm:text-base border-2 border-rpg-border shrink-0 shadow-sm">
-          <i class="fa-regular fa-image mr-2"></i> 結訓大合照與榮譽授證
-        </div>
+        <button class="gallery-arrow gallery-arrow--next" id="gallery-next" type="button" aria-label="查看下一張照片"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="gallery-actions">
+        <div class="gallery-counter" aria-live="polite"><span id="gallery-current">1</span><span aria-hidden="true"> / </span><span>21</span></div>
+        <p><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> 使用左右按鈕或滑動瀏覽，點擊照片可放大</p>
       </div>
     </div>
   </section>

@@ -9,7 +9,7 @@
     { id: 'gallery', name: '冒險剪影' },
     { id: 'faq', name: '問答指南' }
   ];
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const galleryReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const storageGet = (key, fallback = null) => { try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; } };
   const storageSet = (key, value) => { try { localStorage.setItem(key, value); } catch (_) {} };
   let explored = new Set();
@@ -100,4 +100,133 @@
   }
 
   window.addEventListener('intro:closed', openDialog);
+
+  const galleryViewport = document.getElementById('gallery-viewport');
+  const galleryPrev = document.getElementById('gallery-prev');
+  const galleryNext = document.getElementById('gallery-next');
+  const galleryCurrent = document.getElementById('gallery-current');
+  const galleryCards = [...document.querySelectorAll('.gallery-card')];
+  const galleryPhotos = galleryCards.map((card) => ({
+    src: card.querySelector('img')?.getAttribute('src') || '',
+    alt: card.querySelector('img')?.getAttribute('alt') || '歷屆營隊活動照片'
+  }));
+  let lightbox;
+  let activePhoto = 0;
+  let touchStartX = 0;
+
+  function updateLightbox() {
+    if (!lightbox) return;
+    const photo = galleryPhotos[activePhoto];
+    const image = lightbox.querySelector('.gallery-lightbox__image');
+    image.src = photo.src;
+    image.alt = photo.alt;
+    lightbox.querySelector('.gallery-lightbox__count').textContent = `${activePhoto + 1} / ${galleryPhotos.length}`;
+  }
+
+  function moveLightbox(step) {
+    activePhoto = (activePhoto + step + galleryPhotos.length) % galleryPhotos.length;
+    updateLightbox();
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    const trigger = galleryCards[activePhoto];
+    lightbox.remove();
+    lightbox = null;
+    document.body.style.overflow = '';
+    trigger?.focus({ preventScroll: true });
+  }
+
+  function openLightbox(index) {
+    activePhoto = index;
+    lightbox = document.createElement('div');
+    lightbox.className = 'gallery-lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', '歷屆營隊精彩剪影');
+    lightbox.innerHTML = '<button class="gallery-lightbox__close" type="button" aria-label="關閉照片"><i class="fa-solid fa-xmark"></i></button><button class="gallery-lightbox__nav gallery-lightbox__prev" type="button" aria-label="上一張"><i class="fa-solid fa-chevron-left"></i></button><figure class="gallery-lightbox__figure"><img class="gallery-lightbox__image" alt=""><figcaption class="gallery-lightbox__caption"><span class="gallery-lightbox__count"></span></figcaption></figure><button class="gallery-lightbox__nav gallery-lightbox__next" type="button" aria-label="下一張"><i class="fa-solid fa-chevron-right"></i></button>';
+    document.body.appendChild(lightbox);
+    document.body.style.overflow = 'hidden';
+    updateLightbox();
+    lightbox.querySelector('.gallery-lightbox__close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.gallery-lightbox__prev').addEventListener('click', () => moveLightbox(-1));
+    lightbox.querySelector('.gallery-lightbox__next').addEventListener('click', () => moveLightbox(1));
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+    lightbox.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', (event) => {
+      const delta = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 48) moveLightbox(delta > 0 ? -1 : 1);
+    }, { passive: true });
+    lightbox.querySelector('.gallery-lightbox__close').focus();
+  }
+
+  galleryCards.forEach((card, index) => card.addEventListener('click', () => openLightbox(index)));
+
+  let galleryScrollFrame = 0;
+  let galleryAutoTimer = 0;
+  let galleryPaused = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function galleryStep() {
+    if (!galleryViewport || galleryCards.length < 2) return 0;
+    return galleryCards[1].offsetLeft - galleryCards[0].offsetLeft;
+  }
+
+  function galleryIndex() {
+    const step = galleryStep();
+    return step ? Math.max(0, Math.min(galleryCards.length - 1, Math.round(galleryViewport.scrollLeft / step))) : 0;
+  }
+
+  function updateGalleryCounter() {
+    if (galleryCurrent) galleryCurrent.textContent = String(galleryIndex() + 1);
+  }
+
+  function moveGallery(direction) {
+    if (!galleryViewport) return;
+    const step = galleryStep();
+    if (!step) return;
+    const atEnd = galleryViewport.scrollLeft + galleryViewport.clientWidth >= galleryViewport.scrollWidth - 4;
+    const atStart = galleryViewport.scrollLeft <= 4;
+    if (direction > 0 && atEnd) galleryViewport.scrollTo({ left: 0, behavior: 'smooth' });
+    else if (direction < 0 && atStart) galleryViewport.scrollTo({ left: galleryViewport.scrollWidth, behavior: 'smooth' });
+    else galleryViewport.scrollBy({ left: direction * step, behavior: 'smooth' });
+  }
+
+  function startGalleryAuto() {
+    window.clearInterval(galleryAutoTimer);
+    if (galleryReducedMotion || galleryPaused || !galleryViewport) return;
+    galleryAutoTimer = window.setInterval(() => moveGallery(1), 4800);
+  }
+
+  function pauseGallery() {
+    galleryPaused = true;
+    window.clearInterval(galleryAutoTimer);
+  }
+
+  function resumeGallery() {
+    galleryPaused = false;
+    startGalleryAuto();
+  }
+
+  galleryPrev?.addEventListener('click', () => { moveGallery(-1); startGalleryAuto(); });
+  galleryNext?.addEventListener('click', () => { moveGallery(1); startGalleryAuto(); });
+  galleryViewport?.addEventListener('scroll', () => {
+    window.cancelAnimationFrame(galleryScrollFrame);
+    galleryScrollFrame = window.requestAnimationFrame(updateGalleryCounter);
+  }, { passive: true });
+  galleryViewport?.addEventListener('mouseenter', pauseGallery);
+  galleryViewport?.addEventListener('mouseleave', resumeGallery);
+  galleryViewport?.addEventListener('focusin', pauseGallery);
+  galleryViewport?.addEventListener('focusout', resumeGallery);
+  galleryViewport?.addEventListener('touchstart', pauseGallery, { passive: true });
+  galleryViewport?.addEventListener('touchend', resumeGallery, { passive: true });
+  document.addEventListener('visibilitychange', () => document.hidden ? pauseGallery() : resumeGallery());
+  updateGalleryCounter();
+  startGalleryAuto();
+  document.addEventListener('keydown', (event) => {
+    if (!lightbox) return;
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowLeft') moveLightbox(-1);
+    if (event.key === 'ArrowRight') moveLightbox(1);
+  });
 })();
